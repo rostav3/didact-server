@@ -52,4 +52,40 @@ public class BookDTO {
     public void setVersion(int version) {
         this.version = version;
     }
+
+    public long getBookId() {
+        return bookId;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getTagLine() {
+        return tagLine;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPublishedDate() {
+        return publishedDate;
+    }
+
+    public int getRevisionDate() {
+        return revisionDate;
+    }
+
+    public int getVersion() {
+        return version;
+    }
 }
