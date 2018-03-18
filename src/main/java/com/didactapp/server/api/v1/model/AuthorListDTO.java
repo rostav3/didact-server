@@ -9,11 +9,11 @@ import java.util.List;
  */
 @Data
 public class AuthorListDTO {
+    private List<AuthorDTO> authors;
+
     public AuthorListDTO(List<AuthorDTO> authors) {
         this.authors = authors;
     }
-
-    private List<AuthorDTO> authors;
 
     public List<AuthorDTO> getAuthors() {
         return authors;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by jt on 9/26/17.
  */
 @Controller
-@RequestMapping("/api/v1/authors_book/")
+@RequestMapping("/api/v1/authors/")
 public class AuthorController {
 
     private final AuthorService authorService;
@@ -22,7 +22,7 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping("{book_id}")
+    @GetMapping("books/{book_id}")
     public ResponseEntity<AuthorListDTO> getAuthorsByBookId(@PathVariable long book_id){
 
         return new ResponseEntity<>(

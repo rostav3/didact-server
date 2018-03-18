@@ -9,11 +9,11 @@ import java.util.List;
  */
 @Data
 public class BookListDTO {
+    private List<BookDTO> books;
+
     public BookListDTO(List<BookDTO> books) {
         this.books = books;
     }
-
-    private List<BookDTO> books;
 
     public List<BookDTO> getBooks() {
         return books;
