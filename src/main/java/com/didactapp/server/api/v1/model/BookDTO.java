@@ -1,11 +1,8 @@
 package com.didactapp.server.api.v1.model;
 
-import lombok.Data;
-
 /**
  * Created by jt on 9/24/17.
  */
-@Data
 public class BookDTO {
     private long bookId;
     private String coverUrl;

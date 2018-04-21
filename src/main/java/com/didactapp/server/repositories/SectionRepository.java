@@ -1,6 +1,5 @@
 package com.didactapp.server.repositories;
 
-import com.didactapp.server.domain.Chapter;
 import com.didactapp.server.domain.Section;
 import org.springframework.data.jpa.repository.JpaRepository;
 

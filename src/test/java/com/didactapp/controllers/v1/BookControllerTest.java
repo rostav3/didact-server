@@ -15,9 +15,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -30,8 +29,8 @@ public class BookControllerTest {
     private static final String THUMBNAIL_URL = "www.facebook.com";
     private static final String TAG_LINE = "stum";
     private static final String DESCRIPTION = "blah blah";
-    private static final long ID_1 = 1L;
-    private static final long ID_2 = 2L;
+    private static final long ID_1 = 1;
+    private static final long ID_2 = 2;
     private static final int VERSION = 1;
     private static final int PUBLISHED_DATE = 1024484393;
     private static final int REVISION_DATE = 1024484553;
@@ -81,14 +80,14 @@ public class BookControllerTest {
 
         when(bookService.getAllBooks()).thenReturn(books);
 
-        mockMvc.perform(get("/api/v1/books/")
+        mockMvc.perform(get("/api/v1/books/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.books", hasSize(2)));
     }
 
     @Test
-    public void testGetByNameBooks() throws Exception {
+    public void testGetByBookId() throws Exception {
         BookDTO bookDTO1 = new BookDTO();
         bookDTO1.setTitle(TITLE);
         bookDTO1.setBookId(ID_1);
@@ -99,12 +98,12 @@ public class BookControllerTest {
         bookDTO1.setTagLine(TAG_LINE);
         bookDTO1.setThumbnailUrl(THUMBNAIL_URL);
         bookDTO1.setVersion(VERSION);
+//        when(bookService.getBookByBookId(ID_1)).thenReturn(bookDTO1);
+        when(bookService.getBookByBookId(ID_1)).thenReturn(bookDTO1);
 
-        when(bookService.getBookByBookId(anyLong())).thenReturn(bookDTO1);
-
-        mockMvc.perform(get("/api/v1/categories/Jim")
+        mockMvc.perform(get("/api/v1/books/" + ID_1)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.book_id", equalTo(ID_1)));
+                    .andExpect(jsonPath("$.bookId", is(1)));
     }
 }

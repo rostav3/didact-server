@@ -31,12 +31,13 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-websocket')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
-//	compile('org.springframework.kafka:spring-kafka')
+	compile ('org.springframework.security:spring-security-web:5.0.4.RELEASE')
 	runtime('org.postgresql:postgresql')
-	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
-
-	compile 'org.mapstruct:mapstruct:1.2.0.Final'
+	compile ('io.jsonwebtoken:jjwt:0.9.0')
+	compile 'com.nimbusds:nimbus-jose-jwt:4.1'
+	compile 'com.google.code.gson:gson:2.8.2'
+	compile ('org.mapstruct:mapstruct:1.2.0.Final')
 
 }

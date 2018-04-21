@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 public class BookServiceTest {
@@ -61,7 +60,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void getCategoryByName() {
+    public void testGetByBookId() {
 
         //given
         Book book = new Book();
@@ -75,7 +74,7 @@ public class BookServiceTest {
         book.setThumbnailUrl(THUMBNAIL_URL);
         book.setVersion(VERSION);
 
-        when(bookRepository.findByBookId(anyLong())).thenReturn(book);
+        when(bookRepository.findByBookId(ID)).thenReturn(book);
 
         //when
         BookDTO bookDTO = bookService.getBookByBookId(ID);
@@ -90,7 +89,5 @@ public class BookServiceTest {
         assertEquals(TAG_LINE, bookDTO.getTagLine());
         assertEquals(THUMBNAIL_URL, bookDTO.getThumbnailUrl());
         assertEquals(VERSION, bookDTO.getVersion());
-
     }
-
 }
