@@ -4,6 +4,7 @@ import com.didactapp.server.api.v1.model.UserDTO;
 import com.didactapp.server.domain.JwtKeys;
 import com.didactapp.server.domain.RsaKeys;
 import com.didactapp.server.domain.User;
+import com.didactapp.server.error.CustomException;
 import com.didactapp.server.repositories.JwtKeysRepository;
 import com.didactapp.server.repositories.RsaKeysRepository;
 import com.didactapp.server.repositories.UserRepository;
@@ -58,11 +59,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Transactional
     @Override
     public String getNewPublicKey() {
-        String publicKeyString = "error";
         KeyPairGenerator keyPairGenerator;
         try {
             keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-
             keyPairGenerator.initialize(1024);
 
             // generate the key pair
@@ -80,30 +79,57 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             RsaKeys rsaKeys = new RsaKeys();
             rsaKeys.setPrivateKey(Base64.getEncoder().encodeToString(privateRsaKey.getEncoded()));
             rsaKeys.setPublicKey(Base64.getEncoder().encodeToString(publicRsaKey.getEncoded()));
-            publicKeyString = rsaKeys.getPublicKey();
             rsaKeysRepository.save(rsaKeys);
+            return rsaKeys.getPublicKey();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            System.out.println(e.getMessage());
+            throw new CustomException(e.getMessage());
         }
-        return publicKeyString;
     }
 
     @SuppressWarnings("AssignmentToMethodParameter")
     @Transactional
     @Override
-    public String signup(UserDTO userDTO) {
+    public String signUp(UserDTO userDTO) {
         try {
+            if (userDTO == null){
+                throw new CustomException("USER_DATA_EMPTY");
+            }
             User user = getUserFromDTO(userDTO);
 
             if (isUserExist(user)){
-                return "USER_EXISTS";
+                throw new CustomException("USER_EXISTS");
             }
             userRepository.save(user);
             JwtKeys jwtKeys = getAuthorizationKey(user);
             jwtKeysRepository.save(jwtKeys);
             return jwtKeys.getAuthorizationKey();
         }catch (Exception e){
-            return e.getMessage();
+            throw new CustomException(e.getMessage());
+        }
+    }
+
+    @SuppressWarnings("AssignmentToMethodParameter")
+    @Transactional
+    @Override
+    public String signIn(UserDTO userDTO) {
+        try {
+            if (userDTO == null){
+                throw new CustomException("USER_DATA_EMPTY");
+            }
+            User user = getUserFromDTO(userDTO);
+            User userRealData = userRepository.findByEmail(user.getEmail());
+            if (userRealData == null){
+                throw new CustomException("USER_NOT_EXISTS");
+            }
+            if (!userRealData.getPassword().equals(user.getPassword())){
+                throw new CustomException("PASSWORD_INCORRECT");
+            }
+
+            JwtKeys jwtKeys = getAuthorizationKey(user);
+            jwtKeysRepository.save(jwtKeys);
+            return jwtKeys.getAuthorizationKey();
+        }catch (Exception e){
+            throw new CustomException(e.getMessage());
         }
     }
 
@@ -116,7 +142,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return keys;
     }
 
-    private boolean isUserExist(User user) throws Exception {
+    private boolean isUserExist(User user) {
         User userData = userRepository.findByEmail(user.getEmail());
         return (userData != null);
     }
@@ -124,15 +150,24 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private User getUserFromDTO(UserDTO userDTO) throws Exception {
         RsaKeys rsaKeys = rsaKeysRepository.findByPublicKey(userDTO.getKey());
         if (rsaKeys == null) {
-            throw new Exception("PUBLIC_KEY_UNKNOWN");
+            throw new CustomException("PUBLIC_KEY_UNKNOWN");
         }
+
         RSAPrivateKey privateRsaKey = getRsaPrivateKey(rsaKeys.getPrivateKey());
+        if (privateRsaKey == null){
+            throw new CustomException("RSA_KEYS_ERROR");
+        }
         EncryptedJWT jwt = EncryptedJWT.parse(userDTO.getUserKey());
         RSADecrypter decrypter = new RSADecrypter(privateRsaKey);
         jwt.decrypt(decrypter);
 
         Gson gson = new Gson();
         User user = gson.fromJson(jwt.getJWTClaimsSet().getSubject(), User.class);
+
+        if ((user == null) || (user.getPassword().equals("null")) || (user.getEmail().equals("null"))) {
+            throw new CustomException("USER_DATA_INCORRECT");
+        }
+
         user.setPassword(getPasswordMD5(user.getPassword()));
         user.setEmail(user.getEmail().toLowerCase());
         return user;
@@ -145,19 +180,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return DatatypeConverter.printHexBinary(digest).toUpperCase();
     }
 
-    private RSAPrivateKey getRsaPrivateKey(String privateKey){
-        try {
-            KeyFactory kf = KeyFactory.getInstance("RSA");
-
-
-            PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKey));
-
-            return (RSAPrivateKey) kf.generatePrivate(keySpecPKCS8);
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
+    private RSAPrivateKey getRsaPrivateKey(String privateKey) throws Exception{
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKey));
+        return (RSAPrivateKey) kf.generatePrivate(keySpecPKCS8);
     }
 }

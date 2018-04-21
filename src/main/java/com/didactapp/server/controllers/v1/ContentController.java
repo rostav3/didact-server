@@ -24,7 +24,6 @@ public class ContentController {
 
     @GetMapping("sections/{section_id}")
     public ResponseEntity<ContentListDTO> getContentsBySectionId(@PathVariable Integer section_id){
-
         return new ResponseEntity<>(
                 new ContentListDTO(contentService.getContentsBySectionId(section_id)), HttpStatus.OK);
     }

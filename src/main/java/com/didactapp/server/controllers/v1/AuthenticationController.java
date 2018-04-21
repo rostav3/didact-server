@@ -27,9 +27,15 @@ public class AuthenticationController {
                 authenticationService.getNewPublicKey(), HttpStatus.OK);
     }
 
-    @RequestMapping(value="signup",method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="sign-up",method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> signUp(@RequestBody UserDTO userDTO){
         return new ResponseEntity<>(
-               authenticationService.signup(userDTO), HttpStatus.OK);
+               authenticationService.signUp(userDTO), HttpStatus.OK);
+    }
+
+    @RequestMapping(value="sign-in",method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> signIn(@RequestBody UserDTO userDTO){
+        return new ResponseEntity<>(
+                authenticationService.signIn(userDTO), HttpStatus.OK);
     }
 }

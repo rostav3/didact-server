@@ -7,7 +7,8 @@ import com.didactapp.server.api.v1.model.UserDTO;
  */
 public interface AuthenticationService {
     String getNewPublicKey();
-    Object signup(UserDTO userDTO);
+    String signUp(UserDTO userDTO);
+    String signIn(UserDTO userDTO);
 
 
 }
