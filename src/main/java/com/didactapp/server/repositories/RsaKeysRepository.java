@@ -1,7 +1,7 @@
 package com.didactapp.server.repositories;
 
 import com.didactapp.server.domain.RsaKeys;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;
 
@@ -9,6 +9,6 @@ import javax.transaction.Transactional;
  * Created by jt on 9/24/17.
  */
 @Transactional
-public interface RsaKeysRepository extends CrudRepository<RsaKeys, String> {
+public interface RsaKeysRepository extends JpaRepository<RsaKeys, String> {
     RsaKeys findByPublicKey(String book_id);
 }

@@ -13,6 +13,14 @@ public class Section {
     private int sectionId;
     private int chapterId;
     private int sectionNum;
+    private String name;
+    private String explanation;
+    private String imageUrl;
+    private String question;
+    private String wrongAnswer1;
+    private String wrongAnswer2;
+    private String wrongAnswer3;
+    private String correctAnswer;
 
     public Section() {
     }
@@ -21,32 +29,43 @@ public class Section {
         return sectionId;
     }
 
-    public void setSectionId(int sectionId) {
-        this.sectionId = sectionId;
-    }
-
     public int getChapterId() {
         return chapterId;
-    }
-
-    public void setChapterId(int chapterId) {
-        this.chapterId = chapterId;
     }
 
     public int getSectionNum() {
         return sectionNum;
     }
 
-    public void setSectionNum(int sectionNum) {
-        this.sectionNum = sectionNum;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public String toString() {
-        return "Section{" +
-                "sectionId=" + sectionId +
-                ", chapterId=" + chapterId +
-                ", sectionNum=" + sectionNum +
-                '}';
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getWrongAnswer1() {
+        return wrongAnswer1;
+    }
+
+    public String getWrongAnswer2() {
+        return wrongAnswer2;
+    }
+
+    public String getWrongAnswer3() {
+        return wrongAnswer3;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 }

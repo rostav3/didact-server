@@ -15,6 +15,14 @@ public class SectionMapperImpl implements SectionMapper {
         sectionDTO.setChapterId(section.getChapterId());
         sectionDTO.setSectionId(section.getSectionId());
         sectionDTO.setSectionNum(section.getSectionNum());
+        sectionDTO.setCorrectAnswer(section.getCorrectAnswer());
+        sectionDTO.setExplanation(section.getExplanation());
+        sectionDTO.setImageUrl(section.getImageUrl());
+        sectionDTO.setName(section.getName());
+        sectionDTO.setQuestion(section.getQuestion());
+        sectionDTO.setWrongAnswer1(section.getWrongAnswer1());
+        sectionDTO.setWrongAnswer2(section.getWrongAnswer2());
+        sectionDTO.setWrongAnswer3(section.getWrongAnswer3());
         return sectionDTO;
     }
 }

@@ -31,7 +31,7 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
-    public List<ChapterDTO> getChaptersByBookId(Integer book_id) {
+    public List<ChapterDTO> getChaptersByBookId(int book_id) {
         List<Chapter> b = chapterRepository.findByBookId(book_id);
         Stream<Chapter> b2 = b.stream();
         Stream<ChapterDTO> b3 = b2.map(chapterMapper::chapterToChapterDTO);

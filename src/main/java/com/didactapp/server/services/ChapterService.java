@@ -8,5 +8,5 @@ import java.util.List;
  * Created by jt on 9/26/17.
  */
 public interface ChapterService {
-    List<ChapterDTO> getChaptersByBookId(Integer book_id);
+    List<ChapterDTO> getChaptersByBookId(int book_id);
 }

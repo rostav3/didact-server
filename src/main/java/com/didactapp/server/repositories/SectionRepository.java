@@ -9,5 +9,5 @@ import java.util.List;
  * Created by jt on 9/24/17.
  */
 public interface SectionRepository extends JpaRepository<Section, Integer> {
-    List<Section> findByChapterId(Integer chapter_id);
+    List<Section> findByChapterId(int chapter_id);
 }

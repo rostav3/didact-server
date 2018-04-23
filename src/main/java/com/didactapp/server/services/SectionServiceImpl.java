@@ -31,7 +31,7 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public List<SectionDTO> getSectionsByChapterId(Integer chapter_id) {
+    public List<SectionDTO> getSectionsByChapterId(int chapter_id) {
         List<Section> b = sectionRepository.findByChapterId(chapter_id);
         Stream<Section> b2 = b.stream();
         Stream<SectionDTO> b3 = b2.map(sectionMapper::sectionToSectionDTO);
