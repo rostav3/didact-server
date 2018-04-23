@@ -1,6 +1,7 @@
 package com.didactapp.server.controllers.v1;
 
 import com.didactapp.server.api.v1.model.BookDTO;
+import com.didactapp.server.services.AuthenticationService;
 import com.didactapp.server.services.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,21 +20,24 @@ import java.util.List;
 public class BookController {
 
     private final BookService bookService;
+    private final AuthenticationService authenticationService;
 
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService,AuthenticationService authenticationService) {
         this.bookService = bookService;
+        this.authenticationService = authenticationService;
     }
 
-    @GetMapping("all")
-    public ResponseEntity<List<BookDTO>> getallBooks(){
 
-        return new ResponseEntity<List<BookDTO>>(
+    @GetMapping("all/{authentication_key}")
+    public ResponseEntity<List<BookDTO>> getallBooks(@PathVariable String authentication_key){
+
+        return new ResponseEntity<>(
                 bookService.getAllBooks(), HttpStatus.OK);
     }
 
     @GetMapping("{book_id}")
     public ResponseEntity<BookDTO> getBookByBookId(@PathVariable long book_id){
-        return new ResponseEntity<BookDTO>(
+        return new ResponseEntity<>(
                 bookService.getBookByBookId(book_id), HttpStatus.OK
         );
     }

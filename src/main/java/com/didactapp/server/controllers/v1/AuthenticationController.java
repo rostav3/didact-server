@@ -1,5 +1,6 @@
 package com.didactapp.server.controllers.v1;
 
+import com.didactapp.server.api.v1.model.KeyDTO;
 import com.didactapp.server.api.v1.model.UserDTO;
 import com.didactapp.server.services.AuthenticationService;
 import org.springframework.http.HttpStatus;
@@ -22,20 +23,20 @@ public class AuthenticationController {
     }
 
     @GetMapping("public-key")
-    public ResponseEntity<?> getKey() {
+    public ResponseEntity<KeyDTO> getKey() {
         return new ResponseEntity<>(
-                authenticationService.getNewPublicKey(), HttpStatus.OK);
+                new KeyDTO(authenticationService.getNewPublicKey()), HttpStatus.OK);
     }
 
     @RequestMapping(value="sign-up",method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> signUp(@RequestBody UserDTO userDTO){
+    public ResponseEntity<KeyDTO> signUp(@RequestBody UserDTO userDTO){
         return new ResponseEntity<>(
-               authenticationService.signUp(userDTO), HttpStatus.OK);
+               new KeyDTO(authenticationService.signUp(userDTO)), HttpStatus.OK);
     }
 
     @RequestMapping(value="sign-in",method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> signIn(@RequestBody UserDTO userDTO){
+    public ResponseEntity<KeyDTO> signIn(@RequestBody UserDTO userDTO){
         return new ResponseEntity<>(
-                authenticationService.signIn(userDTO), HttpStatus.OK);
+                new KeyDTO(authenticationService.signIn(userDTO)), HttpStatus.OK);
     }
 }
