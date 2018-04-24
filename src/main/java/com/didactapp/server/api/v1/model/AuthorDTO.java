@@ -2,8 +2,9 @@ package com.didactapp.server.api.v1.model;
 
 
 /**
- * Created by jt on 9/24/17.
+ * The class represent the AuthorDTO (Data transfer object) - the Author object for communicate with the client
  */
+
 public class AuthorDTO {
     private long authorId;
     private String firstName;

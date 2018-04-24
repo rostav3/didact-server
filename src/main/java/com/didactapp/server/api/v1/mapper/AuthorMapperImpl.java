@@ -4,6 +4,9 @@ import com.didactapp.server.api.v1.model.AuthorDTO;
 import com.didactapp.server.domain.Author;
 import org.springframework.stereotype.Component;
 
+/**
+ * The class is a mapper from Author to AuthorDTO
+ */
 @Component
 public class AuthorMapperImpl implements AuthorMapper {
     @Override

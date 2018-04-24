@@ -1,8 +1,9 @@
 package com.didactapp.server.api.v1.model;
 
 /**
- * Created by jt on 9/24/17.
+ * The class represent the BookDTO (Data transfer object) - the Book object for communicate with the client
  */
+
 public class BookDTO {
     private long bookId;
     private String coverUrl;

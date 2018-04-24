@@ -1,11 +1,11 @@
 package com.didactapp.server.api.v1.model;
 
 /**
- * Created by jt on 9/24/17.
+ * The class represent the UserDTO (Data transfer object) - the User object for communicate with the client
  */
 public class UserDTO {
     private String userKey;
-    private String key;
+    private String key; // The public key that used for encrypt the userKey.
 
     public UserDTO() {
     }

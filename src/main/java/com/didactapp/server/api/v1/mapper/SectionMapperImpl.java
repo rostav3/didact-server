@@ -4,6 +4,10 @@ import com.didactapp.server.api.v1.model.SectionDTO;
 import com.didactapp.server.domain.Section;
 import org.springframework.stereotype.Component;
 
+/**
+ * The class is a mapper from Section to SectionDTO
+ */
+
 @Component
 public class SectionMapperImpl implements SectionMapper {
     @Override

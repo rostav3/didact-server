@@ -1,7 +1,7 @@
 package com.didactapp.server.api.v1.model;
 
 /**
- * Created by jt on 9/24/17.
+ * The class represent the SectionDTO (Data transfer object) - the Section object for communicate with the client
  */
 public class SectionDTO {
     private int sectionId;

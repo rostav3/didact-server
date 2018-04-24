@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/api/v1/authentication/")
-
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 

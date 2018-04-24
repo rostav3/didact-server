@@ -1,5 +1,9 @@
 package com.didactapp.server.api.v1.model;
 
+/**
+ * The class represent the KeyDTO (Data transfer object) - the Key object for communicate with the client
+ */
+
 public class KeyDTO {
     private String key;
 
