@@ -20,6 +20,7 @@ public class ChapterMapperImpl implements ChapterMapper {
         chapterDTO.setChapterNum(chapter.getChapterNum());
         chapterDTO.setDescription(chapter.getDescription());
         chapterDTO.setThumbnailUrl(chapter.getThumbnailUrl());
+        chapterDTO.setName(chapter.getName());
         return chapterDTO;
     }
 }

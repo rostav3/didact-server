@@ -15,8 +15,18 @@ public class Chapter {
     private int chapterNum;
     private String description;
     private String thumbnailUrl;
+    private String name;
+
 
     public Chapter() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getChapterId() {

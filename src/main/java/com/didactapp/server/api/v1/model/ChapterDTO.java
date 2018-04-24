@@ -9,6 +9,15 @@ public class ChapterDTO {
     private int chapterNum;
     private String description;
     private String thumbnailUrl;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getChapterId() {
         return chapterId;
