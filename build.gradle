@@ -39,5 +39,6 @@ dependencies {
 	compile 'com.nimbusds:nimbus-jose-jwt:4.1'
 	compile 'com.google.code.gson:gson:2.8.2'
 	compile ('org.mapstruct:mapstruct:1.2.0.Final')
+	compile 'org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec:1.0.0.Final'
 
 }
