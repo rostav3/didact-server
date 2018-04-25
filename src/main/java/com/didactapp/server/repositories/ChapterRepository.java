@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * Created by jt on 9/24/17.
+ * The interface connection with the chapter table in db
  */
 public interface ChapterRepository extends JpaRepository<Chapter, Integer> {
     List<Chapter> findByBookId(int book_id);

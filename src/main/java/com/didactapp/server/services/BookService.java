@@ -5,7 +5,7 @@ import com.didactapp.server.api.v1.model.BookDTO;
 import java.util.List;
 
 /**
- * Created by jt on 9/26/17.
+ * The interface service in the book api.
  */
 public interface BookService {
 

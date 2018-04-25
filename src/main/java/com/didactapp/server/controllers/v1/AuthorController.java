@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
- * Created by jt on 9/26/17.
+ * The class represent the api of the authors
  */
+
 @Controller
 @RequestMapping("/api/v1/authors/")
 public class AuthorController {
@@ -28,8 +29,15 @@ public class AuthorController {
         this.jwtUserAuthenticationService = jwtUserAuthenticationService;
     }
 
+    /**
+     * The get call of all authors of a book.
+     * @param book_id - The book we want to get is authors
+     * @param authentication_key - code for authenticate the user
+     * @return all the authors of the book
+     */
     @GetMapping("books/{book_id}/{authentication_key}")
-    public ResponseEntity<List<AuthorDTO>> getAuthorsByBookId(@PathVariable long book_id, @PathVariable String authentication_key){
+    public ResponseEntity<List<AuthorDTO>> getAuthorsByBookId(@PathVariable long book_id,
+                                                              @PathVariable String authentication_key){
         if (!jwtUserAuthenticationService.isUserAutheticated(authentication_key)){
             throw new CustomException("USER_NOT_AUTHENTICATION");
         }

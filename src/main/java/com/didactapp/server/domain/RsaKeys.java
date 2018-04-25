@@ -2,6 +2,10 @@ package com.didactapp.server.domain;
 
 import javax.persistence.*;
 
+/**
+ * The class represent the rsa_keys entity
+ */
+
 @Table(name = "rsa_keys")
 @Entity
 public class RsaKeys {

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.transaction.Transactional;
 
 /**
- * Created by jt on 9/24/17.
+ * The interface connection with the rsa_keys table in db
  */
 @Transactional
 public interface RsaKeysRepository extends JpaRepository<RsaKeys, String> {

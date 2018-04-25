@@ -1,7 +1,7 @@
 package com.didactapp.server.services;
 
 /**
- * Created by jt on 9/26/17.
+ * The interface service of the authentication key (for each api, except the authentication api).
  */
 public interface JWTUserAuthenticationService {
     boolean isUserAutheticated(String authorization_key);

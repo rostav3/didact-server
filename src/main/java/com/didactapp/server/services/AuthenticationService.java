@@ -3,7 +3,7 @@ package com.didactapp.server.services;
 import com.didactapp.server.api.v1.model.UserDTO;
 
 /**
- * Created by jt on 9/26/17.
+ * The interface service in the authentication api.
  */
 public interface AuthenticationService {
     String getNewPublicKey();

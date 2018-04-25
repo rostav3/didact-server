@@ -6,8 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by jt on 9/24/17.
+ * The class represent the Book entity
  */
+
 @Entity
 public class Book {
 

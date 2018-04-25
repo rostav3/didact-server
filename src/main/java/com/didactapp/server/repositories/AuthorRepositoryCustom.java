@@ -5,7 +5,7 @@ import com.didactapp.server.domain.Author;
 import java.util.List;
 
 /**
- * Created by jt on 9/24/17.
+ * The interface connection with the author table in db, for not usual queries.
  */
 public interface AuthorRepositoryCustom {
 

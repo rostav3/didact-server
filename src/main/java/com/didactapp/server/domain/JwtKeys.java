@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * The class represent the jwt_keys entity
+ */
+
 @Table(name = "jwt_keys")
 @Entity
 public class JwtKeys {

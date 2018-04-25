@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * The class represent the User entity
+ */
+
 @Table(name = "user_data")
 @Entity
 public class User {

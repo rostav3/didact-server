@@ -2,17 +2,15 @@ package com.didactapp.server.services;
 
 import com.didactapp.server.api.v1.mapper.SectionMapper;
 import com.didactapp.server.api.v1.model.SectionDTO;
-import com.didactapp.server.domain.Section;
 import com.didactapp.server.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
- * Created by jt on 9/26/17.
+ * The service class in the section api.
  */
 @Service
 public class SectionServiceImpl implements SectionService {
@@ -30,11 +28,13 @@ public class SectionServiceImpl implements SectionService {
         this.sectionRepository = sectionRepository;
     }
 
+    /**
+     * return all the sections in a chapter
+     * @param chapter_id - the chapter that we get is sectionss.
+     * @return list of all the sections
+     */
     @Override
     public List<SectionDTO> getSectionsByChapterId(int chapter_id) {
-        List<Section> b = sectionRepository.findByChapterId(chapter_id);
-        Stream<Section> b2 = b.stream();
-        Stream<SectionDTO> b3 = b2.map(sectionMapper::sectionToSectionDTO);
-        return b3.collect(Collectors.toList());
+        return sectionRepository.findByChapterId(chapter_id).stream().map(sectionMapper::sectionToSectionDTO).collect(Collectors.toList());
     }
 }

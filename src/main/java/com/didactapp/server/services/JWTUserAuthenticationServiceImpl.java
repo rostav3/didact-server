@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by jt on 9/26/17.
+ * The service class of the authentication key (for each api, except the authentication api).
  */
+
 @Service
 public class JWTUserAuthenticationServiceImpl implements JWTUserAuthenticationService {
 
@@ -18,6 +19,11 @@ public class JWTUserAuthenticationServiceImpl implements JWTUserAuthenticationSe
         this.jwtKeysRepository = jwtKeysRepository;
     }
 
+    /**
+     * check if the authorization_key exists
+     * @param authorization_key - the authorization_key
+     * @return true if exist, else false.
+     */
     public boolean isUserAutheticated(String authorization_key) {
         JwtKeys jwtKeys = jwtKeysRepository.findAuthorsByAuthorizationKey(authorization_key);
         return (jwtKeys != null);

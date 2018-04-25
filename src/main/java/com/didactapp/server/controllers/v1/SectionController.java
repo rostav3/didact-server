@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
- * Created by jt on 9/26/17.
+ * The class represent the api of the sections
  */
 @Controller
 @RequestMapping("/api/v1/sections/")
@@ -28,13 +28,19 @@ public class SectionController {
         this.jwtUserAuthenticationService = jwtUserAuthenticationService;
     }
 
+    /**
+     * The get call of all the sections of a chapter.
+     * @param chapter_id - The chapter we want to get is sections
+     * @param authentication_key - code for authenticate the user
+     * @return the sections of the chapter
+     */
     @GetMapping("chapters/{chapter_id}/{authentication_key}")
-    public ResponseEntity<List<SectionDTO>> getSectionsByChapterId(@PathVariable int chapter_id, @PathVariable String authentication_key){
+    public ResponseEntity<List<SectionDTO>> getSectionsByChapterId(@PathVariable int chapter_id,
+                                                                   @PathVariable String authentication_key){
         if (!jwtUserAuthenticationService.isUserAutheticated(authentication_key)) {
             throw new CustomException("USER_NOT_AUTHENTICATION");
         }
 
-        return new ResponseEntity<>(
-                sectionService.getSectionsByChapterId(chapter_id), HttpStatus.OK);
+        return new ResponseEntity<>(sectionService.getSectionsByChapterId(chapter_id), HttpStatus.OK);
     }
 }

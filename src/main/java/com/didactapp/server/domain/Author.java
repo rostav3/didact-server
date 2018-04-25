@@ -1,10 +1,12 @@
 package com.didactapp.server.domain;
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+/**
+ * The class represent the Author entity
+ */
 
 @Entity
 public class Author {
